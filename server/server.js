@@ -2,9 +2,21 @@ const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
 const routes = require('./routes');
+const dotenv = require('dotenv')
+
+dotenv.config()
+
+var spotify_client_id = process.env.SPOTIFY_CLIENT_ID
+var spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+app.get('/auth/login', (req, res) => {
+});
+
+app.get('/auth/callback', (req, res) => {
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

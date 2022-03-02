@@ -4,8 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "watch": "nodemon server.js"
+    "start": "node server.js react-scripts start",
+    "watch": "nodemon server.js",
+    "build": "react-scripts build",
+    "server": "node server",
+    "dev": "run-p server start"
   },
   "keywords": [],
   "author": "",
