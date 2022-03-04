@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 client/node_modules
 node_modules
 .env
+=======
+node_modules
+client/node_modules
+server/node_modules
+>>>>>>> 9ed8457325d476dfa8e2355e500b42795b4fc21b
