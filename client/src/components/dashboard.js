@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import useAuth from '../utils/useAuth'
-import SpotifyWebApi from 'spotify-web-api-node';
 import TrackSearchResult from './TrackSearchResult';
+import SpotifyWebApi from 'spotify-web-api-node';
+
 const spotifyApi = new SpotifyWebApi({
     clientId: '2bb574410c7f4e1bb11e1a9d4d8908a3'
 })
@@ -20,7 +21,7 @@ const Dashboard = ({ code }) => {
     //handles search requests
     useEffect(() => {
         //if no search results set state to empty
-        if (!search) return setSearchResults([])
+        if (!search) { return setSearchResults([]) }
         if (!accessToken) return
 
         let cancel = false
@@ -35,7 +36,8 @@ const Dashboard = ({ code }) => {
                             return image
                         }
                         return smallest
-                    }, track.album.images[0]
+                    },
+                        track.album.images[0]
                     )
 
                     return {
@@ -65,12 +67,20 @@ const Dashboard = ({ code }) => {
 
 
             </div>
-            <div className="flex text-3xl font-bold overflow-auto">
 
+            <div className="flex text-3xl font-bold overflow-auto">
+                {console.log(searchResults)}
+                {/* {searchResults.map(track => (
+                    <TrackSearchResult
+                        track={track}
+                        key={track.uri}
+                    // chooseTrack={chooseTrack}
+                    />
+                ))} */}
                 {/* how to map over an array */}
-                {/* {searchResults.map((track, item) => {
-                    <TrackSearchResult track={track} key={item.uri} />
-                })} */}
+                {/* {searchResults.map((track) => {
+                <TrackSearchResult track={track} key={track.uri} />
+            })} */}
 
             </div>
         </div>

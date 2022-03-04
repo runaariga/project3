@@ -8,7 +8,7 @@ app.use(cors());
 app.use(bodyParser.json())
 const PORT = process.env.PORT || 3001;
 app.post('/refresh', (req, res) => {
-    const refreshToken = req.body.refreshToken
+    const refreshToken = req.body.refresh_token
     console.log(refreshToken)
     const spotifyApi = new SpotifyWebApi({
         redirectUri: 'http://localhost:3000',
