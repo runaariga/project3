@@ -15,3 +15,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+.buttonHover:hover{
+  opacity:50%;
+}
+
+.cards {
+  display: flex;
+  align-content: center;
+  max-width: 95vw;
+ justify-content: center;
+}
+
+ .cardWrapper {
+  overflow: hidden;
+}
+
+ /* .cardWrapper:nth-child(2), .cardWrapper:hover {
+     overflow: visible; 
+     
+}*/
+
+.card {
+    max-width: 25rem;
+    /* max-width: 10em; */
+    
+}   
+@media only screen and (max-width: 740px) {
+  .card {
+    max-width: 10rem;
+    /* max-width: 10em; */
+    
+}
+}
