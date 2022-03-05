@@ -20,7 +20,7 @@ export default function Login() {
       <Container className="d-flex justify-content-between align-items-center ">
         <img src={content.nav.logo} height="50rem" alt="bangeralert for Navbar" className='buttonHover' />
         <div className="d-flex  align-items-center">
-          <Button className="d-flex align-items-center rounded-pill buttonHover" style={btnStyle}>
+          <Button href={AUTH_URL} className="d-flex align-items-center rounded-pill buttonHover" style={btnStyle}>
             <p className="mx-2 my-auto">{content.nav.spotifyLogo[1]}</p>
             <img src={content.nav.spotifyLogo[0]} height="20rem" alt="bangeralert Logo for Navbar" />
           </Button>

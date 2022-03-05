@@ -17,7 +17,7 @@ export default function Dashboard({ code }) {
   const [searchResults, setSearchResults] = useState([])
   const [playingTrack, setPlayingTrack] = useState()
   const [lyrics, setLyrics] = useState("")
-
+  const [playlist, setPlaylist] = useState('')
   function chooseTrack(track) {
     setPlayingTrack(track)
     setSearch("")
@@ -74,6 +74,24 @@ export default function Dashboard({ code }) {
     return () => (cancel = true)
   }, [search, accessToken])
 
+
+
+  spotifyApi.getUserPlaylists('22wxpsvxtr5nm3nql3osejizy')
+    .then(res => {
+      setPlaylist(
+
+        res.body.items.map(playlist => {
+          console.log(playlist.tracks)
+          return {
+            name: playlist.name,
+            uri: playlist.uri,
+            id: playlist.id
+          }
+        }
+        ));
+
+    });
+
   return (
     <Container className="d-flex flex-column py-2 " style={{ height: "100vh", minWidth: "100vw", backgroundColor: '#F7BF50', }}>
       <div className="d-flex justify-content-between align-items-center px-4 py-2">
@@ -88,7 +106,7 @@ export default function Dashboard({ code }) {
       </div>
 
       <div className="d-flex ">
-        <Dashnav />
+        <Dashnav code={code} />
         <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
           {searchResults.map(track => (
             <TrackSearchResult
