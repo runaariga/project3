@@ -78,17 +78,17 @@ export default function Dashboard({ code }) {
   // console.log({ code });
   // spotifyApi.getUserPlaylists('22wxpsvxtr5nm3nql3osejizy')
   //   .then(res => {
-  //     setPlaylist(
 
-  //       res.body.items.map(playlist => {
-  //         console.log(playlist.tracks)
-  //         return {
-  //           name: playlist.name,
-  //           uri: playlist.uri,
-  //           id: playlist.id
-  //         }
+
+  //     res.body.items.map(playlist => {
+  //       console.log(playlist.tracks)
+  //       return {
+  //         name: playlist.name,
+  //         uri: playlist.uri,
+  //         id: playlist.id
   //       }
-  //       ));
+  //     }
+  //     )
 
   //   });
 
