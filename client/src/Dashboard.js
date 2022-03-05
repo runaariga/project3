@@ -75,22 +75,22 @@ export default function Dashboard({ code }) {
   }, [search, accessToken])
 
 
+  // console.log({ code });
+  // spotifyApi.getUserPlaylists('22wxpsvxtr5nm3nql3osejizy')
+  //   .then(res => {
+  //     setPlaylist(
 
-  spotifyApi.getUserPlaylists('22wxpsvxtr5nm3nql3osejizy')
-    .then(res => {
-      setPlaylist(
+  //       res.body.items.map(playlist => {
+  //         console.log(playlist.tracks)
+  //         return {
+  //           name: playlist.name,
+  //           uri: playlist.uri,
+  //           id: playlist.id
+  //         }
+  //       }
+  //       ));
 
-        res.body.items.map(playlist => {
-          console.log(playlist.tracks)
-          return {
-            name: playlist.name,
-            uri: playlist.uri,
-            id: playlist.id
-          }
-        }
-        ));
-
-    });
+  //   });
 
   return (
     <Container className="d-flex flex-column py-2 " style={{ height: "100vh", minWidth: "100vw", backgroundColor: '#F7BF50', }}>
