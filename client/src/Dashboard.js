@@ -5,7 +5,8 @@ import TrackSearchResult from "./TrackSearchResult"
 import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
-
+import content from "./content/index.js"
+import Dashnav from "./Dashnav"
 const spotifyApi = new SpotifyWebApi({
   clientId: "8b945ef10ea24755b83ac50cede405a0",
 })
@@ -74,28 +75,36 @@ export default function Dashboard({ code }) {
   }, [search, accessToken])
 
   return (
-    <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
-      <Form.Control
-        type="search"
-        placeholder="Search Songs/Artists"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      />
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-        {searchResults.map(track => (
-          <TrackSearchResult
-            track={track}
-            key={track.uri}
-            chooseTrack={chooseTrack}
-          />
-        ))}
+    <Container className="d-flex flex-column py-2 " style={{ height: "100vh", minWidth: "100vw", backgroundColor: '#F7BF50', }}>
+      <div className="d-flex justify-content-between align-items-center px-4 py-2">
+        <img src={content.nav.logo} height="50rem" alt="bangeralert for Navbar" className='buttonHover' />
+        <Form.Control
+          type="search"
+          className="w-25"
+          placeholder="Search Songs/Artists"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+      </div>
+
+      <div className="d-flex ">
+        <Dashnav />
+        <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+          {searchResults.map(track => (
+            <TrackSearchResult
+              track={track}
+              key={track.uri}
+              chooseTrack={chooseTrack}
+            />
+          ))}
+        </div>
         {searchResults.length === 0 && (
           <div className="text-center" style={{ whiteSpace: "pre" }}>
             {lyrics}
           </div>
         )}
       </div>
-      <div>
+      <div className='fixed-bottom '>
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
     </Container>
