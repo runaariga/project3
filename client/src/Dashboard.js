@@ -5,6 +5,7 @@ import TrackSearchResult from "./TrackSearchResult"
 import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
+import Wave from '@foobar404/wave'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "8b945ef10ea24755b83ac50cede405a0",
@@ -12,12 +13,14 @@ const spotifyApi = new SpotifyWebApi({
 
 export default function Dashboard({ code }) {
   const accessToken = useAuth(code)
+  // const [wave] = useState(new Wave());
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [playingTrack, setPlayingTrack] = useState()
   const [lyrics, setLyrics] = useState("")
 
   function chooseTrack(track) {
+    console.log("choosing track ", track)
     setPlayingTrack(track)
     setSearch("")
     setLyrics("")
@@ -36,6 +39,22 @@ export default function Dashboard({ code }) {
       .then(res => {
         setLyrics(res.data.lyrics)
       })
+  }, [playingTrack])
+
+  // WAVE
+  useEffect(() => {
+    const wave = new Wave();
+    console.log("invoked playing track effect")
+    setTimeout(()=> {
+      console.log("5 seconds later ....")
+      navigator.mediaDevices.getUserMedia({ audio: true }, (stream) => {
+        console.log(stream)
+        wave.fromStream(stream, "canvas_element", {
+          type: "flower",
+          colors: ["#000", "#fff"]
+        });
+      }, err => console.log("COULD NOT GET STREAM ", err))
+    }, 10000)
   }, [playingTrack])
 
   useEffect(() => {
@@ -95,6 +114,7 @@ export default function Dashboard({ code }) {
           </div>
         )}
       </div>
+      {playingTrack && <canvas width="350px" height="350px" id="canvas_element"/>}
       <div>
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
