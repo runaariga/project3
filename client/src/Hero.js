@@ -9,16 +9,16 @@ const Hero = () => {
                     <img src={content.hero.image} className='card' alt=" " style={{ marginRight: '-7rem', }} />
                 </div>
                 <div className="cardWrapper">
-                    <img src={content.hero.image} className='card' alt=" " style={{ marginRight: '-7rem', }} />
+                    <img src={content.hero.image2} className='card' alt=" " style={{ marginRight: '-7rem', }} />
                 </div>
                 <div className="cardWrapper">
-                    <img src={content.hero.image} className='card ' alt="" style={{}} />
+                    <img src={content.hero.image5} className='card ' alt="" style={{}} />
                 </div>
                 <div className="cardWrapper">
-                    <img src={content.hero.image} className='card' alt="" style={{ marginLeft: '-7rem', }} />
+                    <img src={content.hero.image4} className='card' alt="" style={{ marginLeft: '-7rem', }} />
                 </div>
                 <div className="cardWrapper">
-                    <img src={content.hero.image} className='card' alt="" style={{ marginLeft: '-7rem', }} />
+                    <img src={content.hero.image3} className='card' alt="" style={{ marginLeft: '-7rem', }} />
                 </div>
 
 

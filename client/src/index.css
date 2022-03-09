@@ -36,14 +36,18 @@ code {
 }*/
 
 .card {
-    max-width: 25rem;
+    max-width: 15rem;
     /* max-width: 10em; */
+    max-height:25rem;
+    border: 3px solid #4D370F;
+    border-radius: 5px
     
 }   
 @media only screen and (max-width: 740px) {
   .card {
     max-width: 10rem;
     /* max-width: 10em; */
+    
     
 }
 }
