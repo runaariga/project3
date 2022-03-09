@@ -91,7 +91,15 @@ export default function Dashboard({ code }) {
       .then(function (data) {
         setSaved(data.body.items.map((tracks) => {
 
+          // const smallestAlbumI = tracks.album.images.reduce(
+          //   (small, im) => {
+          //     if (im.height < small.height) return im
+          //     return small
+          //   },
+          //   tracks.album.images[0]
+          // )
           return {
+            // albumUrl: tracks.album.images[0],
             album: tracks.track.album,
             artists: tracks.track.artists[0],
             name: tracks.track.name,
@@ -119,21 +127,13 @@ export default function Dashboard({ code }) {
         />
       </div>
 
-      <div>
-        {saved.map((track) => {
-          return <div className="d-flex">{track.name}</div>
-
-        }
-
-        )}
-      </div>
 
 
       <div className="d-flex justify-content-center h-100
        overflow-y-auto ">
         {/* <Dashnav /> */}
 
-        <div className="flex-grow-1 my-2 " style={{ overflowY: "auto" }}>
+        <div className="flex-grow-1 my-2 hidden" style={{ overflowY: "auto" }}>
           {searchResults.length === 0 && (
             <div className="text-center" style={{ whiteSpace: "pre", overflowY: "auto" }}>
               {lyrics}
