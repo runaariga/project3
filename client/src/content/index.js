@@ -1,6 +1,5 @@
 import spotifyLogo from './spotify.png'
-import placeholder from './assets.png'
-import placeholder2 from './white.jpg'
+
 import bangerAlertLogo from './bangeralert-logos.jpeg'
 
 import dark from './dark.png'

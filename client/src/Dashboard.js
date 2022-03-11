@@ -3,9 +3,11 @@ import useAuth from "./useAuth"
 import Player from "./Player"
 import TrackSearchResult from "./TrackSearchResult"
 import { Container, Form } from "react-bootstrap"
+import Animation from "./animation"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
-import content from "./content/index.js"
+
+import { IoMusicalNotesSharp } from 'react-icons/io5'
 // import Dashnav from "./Dashnav"
 const spotifyApi = new SpotifyWebApi({
   clientId: "8b945ef10ea24755b83ac50cede405a0",
@@ -18,7 +20,7 @@ export default function Dashboard({ code }) {
   const [searchResults, setSearchResults] = useState([])
   const [playingTrack, setPlayingTrack] = useState()
   const [lyrics, setLyrics] = useState("")
-  const [saved, setSaved] = useState([])
+
   function chooseTrack(track) {
     setPlayingTrack(track)
     setSearch("")
@@ -82,60 +84,63 @@ export default function Dashboard({ code }) {
   //   }, function (err) {
   //     console.log('Something went wrong!', err);
   //   });
-  useEffect(() => {
+  // useEffect(() => {
 
-    spotifyApi.getMySavedTracks({
-      limit: 20,
-      offset: 1
-    })
-      .then(function (data) {
-        setSaved(data.body.items.map((tracks) => {
+  //   spotifyApi.getMySavedTracks({
+  //     limit: 20,
+  //     offset: 1
+  //   })
+  //     .then(function (data) {
+  //       setSaved(data.body.items.map((tracks) => {
 
-          // const smallestAlbumI = tracks.album.images.reduce(
-          //   (small, im) => {
-          //     if (im.height < small.height) return im
-          //     return small
-          //   },
-          //   tracks.album.images[0]
-          // )
-          return {
-            // albumUrl: tracks.album.images[0],
-            album: tracks.track.album,
-            artists: tracks.track.artists[0],
-            name: tracks.track.name,
-            uri: tracks.track.uri,
-          }
-        }
 
-        ))
-        console.log('Done!', saved);
-      }, function (err) {
-        console.log('Something went wrong!', err);
-      });
+  //         return {
+  //           // albumUrl: tracks.album.images[0],
+  //           album: tracks.track.album,
+  //           artists: tracks.track.artists[0],
+  //           name: tracks.track.name,
+  //           uri: tracks.track.uri,
+  //         }
+  //       }
 
-  }, [saved, accessToken])
+  //       ))
+  //       console.log('Done!', saved);
+  //     }, function (err) {
+  //       console.log('Something went wrong!', err);
+  //     });
+
+  // }, [saved, accessToken])
   return (
     <Container className="d-flex flex-column py-2 " style={{ height: "100vh", minWidth: "100vw", backgroundColor: '#F7BF50', }}>
-      <div className="d-flex justify-content-between align-items-center px-4 py-2">
-        <img src={content.nav.logo} height="50rem" alt="bangeralert for Navbar" className='buttonHover' />
+      <div style={{ zIndex: 10 }} className="d-flex justify-content-between align-items-center px-4 py-2">
+        {/* <img src={content.nav.logo} height="50rem" alt="bangeralert for Navbar" className='buttonHover' />
+         */}
+        <div className="d-flex align-items-center"  >
+          <div className="" style={{ marginLeft: '-1rem', borderRight: '2px solid', marginRight: '.5rem', paddingRight: '.5rem' }}>
+            <IoMusicalNotesSharp style={{ fontSize: '1.75rem' }} />
+          </div>
+          <h1 style={{ fontFamily: 'Quicksand, sans-serif', fontSize: '1.5rem' }}>bangeralert</h1>
+        </div>
         <Form.Control
           type="search"
           className="w-25"
           placeholder="Search Songs/Artists"
           value={search}
           onChange={e => setSearch(e.target.value)}
+          onClick={() => document.getElementById("tagline").classList.add("d-none")}
         />
       </div>
 
 
+      <Animation />
 
       <div className="d-flex justify-content-center h-100
-       overflow-y-auto ">
-        {/* <Dashnav /> */}
+       overflow-y-auto " style={{ zIndex: 10 }}>
 
-        <div className="flex-grow-1 my-2 hidden" style={{ overflowY: "auto" }}>
+
+        <div className="flex-grow-1 my-2 " style={{ overflowY: "auto" }}>
           {searchResults.length === 0 && (
-            <div className="text-center" style={{ whiteSpace: "pre", overflowY: "auto" }}>
+            <div className="text-center h5" style={{ whiteSpace: "pre", overflowY: "auto" }}>
               {lyrics}
             </div>
           )}
@@ -148,7 +153,7 @@ export default function Dashboard({ code }) {
           ))}
         </div>
       </div>
-      <div className='fixed-bottom '>
+      <div className='fixed-bottom'>
         <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
       </div>
     </Container >
