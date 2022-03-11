@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');body {
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Quicksand:wght@700&display=swap');
+
+body {
   margin: 0;
   font-family: Dosis;
   -webkit-font-smoothing: antialiased;
@@ -36,14 +39,19 @@ code {
 }*/
 
 .card {
-    max-width: 25rem;
+    max-width: 15rem;
     /* max-width: 10em; */
+    max-height:25rem;
+    border: 2px solid #4D370F;
+    border-radius: 3px;
+    
     
 }   
 @media only screen and (max-width: 740px) {
   .card {
     max-width: 10rem;
     /* max-width: 10em; */
+    
     
 }
 }
