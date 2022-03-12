@@ -22,7 +22,6 @@ visit http://localhost:3001
 * [node.js](https://nodejs.org/)
 * [React.js](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com)
-* [HTML]
 * [express.js](https://expressjs.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
