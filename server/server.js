@@ -1,4 +1,3 @@
-//Dependancies
 require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
@@ -6,16 +5,13 @@ const bodyParser = require("body-parser")
 const lyricsFinder = require("lyrics-finder")
 const SpotifyWebApi = require("spotify-web-api-node")
 
-//Express/Port
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001;
 
-//Middleware
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//Returns Refreshed Access Token
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
@@ -39,7 +35,6 @@ app.post("/refresh", (req, res) => {
     })
 })
 
-//Logs in to SpotifyAPI
 app.post("/login", (req, res) => {
   const code = req.body.code
   const spotifyApi = new SpotifyWebApi({
@@ -58,16 +53,15 @@ app.post("/login", (req, res) => {
       })
     })
     .catch(err => {
+      console.log(err)
       res.sendStatus(400)
     })
 })
 
-//Searches for Lyrics
 app.get("/lyrics", async (req, res) => {
   const lyrics =
     (await lyricsFinder(req.query.artist, req.query.track)) || "No Lyrics Found"
   res.json({ lyrics })
 })
 
-//Port Listener
 app.listen(PORT)

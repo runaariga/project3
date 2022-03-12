@@ -6,10 +6,9 @@ export default function useAuth(code) {
   const [refreshToken, setRefreshToken] = useState()
   const [expiresIn, setExpiresIn] = useState()
 
-  //Logs in to SpotifyApi
   useEffect(() => {
     axios
-      .post("http://localhost:3001/login", {
+      .post("https://bangeralert.herokuapp.com/login", {
         code,
       })
       .then(res => {
@@ -23,12 +22,11 @@ export default function useAuth(code) {
       })
   }, [code])
 
-  //Refreshs AccessToken
   useEffect(() => {
     if (!refreshToken || !expiresIn) return
     const interval = setInterval(() => {
       axios
-        .post("http://localhost:3001/refresh", {
+        .post("https://bangeralert.herokuapp.com/refresh", {
           refreshToken,
         })
         .then(res => {
