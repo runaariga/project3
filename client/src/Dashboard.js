@@ -1,3 +1,4 @@
+// Dependancies
 import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
 import Player from "./Player"
@@ -6,32 +7,36 @@ import { Container, Form } from "react-bootstrap"
 import Animation from "./animation"
 import SpotifyWebApi from "spotify-web-api-node"
 import axios from "axios"
-
 import { IoMusicalNotesSharp } from 'react-icons/io5'
-// import Dashnav from "./Dashnav"
+
+//SpotifyAPI Client
 const spotifyApi = new SpotifyWebApi({
   clientId: "8b945ef10ea24755b83ac50cede405a0",
 })
 
+//Dashboard
 export default function Dashboard({ code }) {
   const accessToken = useAuth(code)
 
+  //useStates
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [playingTrack, setPlayingTrack] = useState()
   const [lyrics, setLyrics] = useState("")
 
+  //ChooseTrack Functions
   function chooseTrack(track) {
     setPlayingTrack(track)
     setSearch("")
     setLyrics("")
   }
 
+  //Lyric Search
   useEffect(() => {
     if (!playingTrack) return
 
     axios
-      .get("https://bangeralert.herokuapp.com/lyrics", {
+      .get("http://localhost:3001/lyrics", {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
@@ -42,11 +47,13 @@ export default function Dashboard({ code }) {
       })
   }, [playingTrack])
 
+  //Set AccessToken
   useEffect(() => {
     if (!accessToken) return
     spotifyApi.setAccessToken(accessToken)
   }, [accessToken])
 
+  //Render Search Results
   useEffect(() => {
     if (!search) return setSearchResults([])
     if (!accessToken) return
@@ -76,40 +83,7 @@ export default function Dashboard({ code }) {
 
     return () => (cancel = true)
   }, [search, accessToken])
-  // let user = '';
-  // spotifyApi.getMe()
-  //   .then(function (data) {
-  //     console.log('Some information about the authenticated user', data.body.id);
-  //     user = data.body.id;
-  //   }, function (err) {
-  //     console.log('Something went wrong!', err);
-  //   });
-  // useEffect(() => {
 
-  //   spotifyApi.getMySavedTracks({
-  //     limit: 20,
-  //     offset: 1
-  //   })
-  //     .then(function (data) {
-  //       setSaved(data.body.items.map((tracks) => {
-
-
-  //         return {
-  //           // albumUrl: tracks.album.images[0],
-  //           album: tracks.track.album,
-  //           artists: tracks.track.artists[0],
-  //           name: tracks.track.name,
-  //           uri: tracks.track.uri,
-  //         }
-  //       }
-
-  //       ))
-  //       console.log('Done!', saved);
-  //     }, function (err) {
-  //       console.log('Something went wrong!', err);
-  //     });
-
-  // }, [saved, accessToken])
   return (
     <Container className="d-flex flex-column py-2 " style={{ height: "100vh", minWidth: "100vw", backgroundColor: '#F7BF50', }}>
       <div style={{ zIndex: 10 }} className="d-flex justify-content-between align-items-center px-4 py-2">
