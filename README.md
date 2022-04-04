@@ -33,6 +33,8 @@ BangerAlert is a Spotify Companion App that hosts a new wrapper and displays lyr
 
 ## Deployment
 
+### ### NOTE: A SPOTIFY PREMIUM ACCOUNT IS REQUIRED ### ####
+
 https://banger-alert-redux.herokuapp.com/
 
 ## Local
